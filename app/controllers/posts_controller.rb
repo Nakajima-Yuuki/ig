@@ -64,6 +64,11 @@ class PostsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def show
+    @favorite = current_user.favorites.find_by(post_id: @post.id)
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
