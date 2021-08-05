@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  root to: "posts#index"#TOP
   resources :sessions, only: [:new, :create, :destroy]
   resources :users, only: [:new, :create, :show]
+  resources :posts do
+    collection do
+     post :confirm
+    end
+  end
 end
