@@ -2,7 +2,7 @@
 
 <h1>投稿一覧</h1>
 
-<table>
+<table border="4"> 
   <thead>
     <tr>
       <th>タイトル</th>
@@ -12,7 +12,7 @@
       <th colspan="3"></th>
     </tr>
   </thead>
-
+  
   <tbody>
     <% @posts.each do |post| %>
       <tr>
@@ -21,8 +21,10 @@
         <td><%= post.user.name %></td>
         <td><%= image_tag(post.image.url) if post.image && post.image.url %></td>
         <td><%= link_to '確認', post %></td>
-        <td><%= link_to '編集', edit_post_path(post.id), data: { confirm: '本当に編集していいですか？' } %></td>
-        <td><%= link_to '削除', post, method: :delete, data: { confirm: '削除してもいいですか?' } %></td>
+        <% if post.user_id == current_user.id %>
+        <td><%= link_to '編集', edit_post_path(post.id) %>
+         <%= link_to "削除", post_path(post.id), method: :delete, data: { confirm: '本当に削除しますか?' } %>
+    <% end %>
       </tr>
     <% end %>
   </tbody>

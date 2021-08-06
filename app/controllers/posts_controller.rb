@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[ show edit update destroy ]
+  before_action :ensure_correct_user, {only: [:edit, :update, :destroy]}
 
   # GET /posts or /posts.json
   def index
@@ -17,7 +18,7 @@ class PostsController < ApplicationController
   else
     @post = Post.new
    end
- end
+  end
 
   def confirm
     @post = current_user.posts.build(post_params)
@@ -80,4 +81,11 @@ class PostsController < ApplicationController
     def post_params
       params.require(:post).permit(:title, :content, :image, :image_cache)
     end
+    def ensure_correct_user
+      @post = Post.find_by(id: params[:id])
+      if @post.user_id != @current_user.id
+        flash[:notice] = "権限がありません"
+        redirect_to("/posts")
+    end
+   end
 end
