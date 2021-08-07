@@ -14,21 +14,23 @@
 <%= link_to '投稿一覧', posts_path %>
 
 <h4>お気に入りした写真一覧</h4>
-<table border="1">
+<table border="5">
   <thead>
   <tr>
     <th>投稿者</th>
     <th>画像</th>
+    <th>タイトル</th>
     <th>内容</th>
   </tr>
   </thead>
   <tbody>
-  <% if @favorite_list.present? %>
-    <% @favorite_list.each do |feed| %>
+<% @favorites.each do |favorite| %>
+    <%if favorite.user.email == current_user.email %>
       <tr>
-        <td><%= post.user.name %></td>
-        <td><%= image_tag post.image.url %></td>
-        <td><%= post.content %></td>
+        <td><%= favorite.post.user.name %></td>
+        <td><%= image_tag favorite.post.image.url, class: 'bd-placeholder-img card-img-top', width: "50%", height: "225" %></td>
+        <td><%= favorite.post.title %></td>
+        <td><%= favorite.post.content %></td>
       </tr>
     <% end %>
   <% end %>
