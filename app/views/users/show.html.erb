@@ -6,7 +6,31 @@
 </p>
 
 <br>
-<td><%= link_to 'Edit Profile', edit_user_path(@user.id) %>
+<td><%= link_to 'プロフィール編集', edit_user_path(@user.id) %>
+
+
 <br><br><br>
 <%= link_to '新規投稿', new_post_path %>
 <%= link_to '投稿一覧', posts_path %>
+
+<h4>お気に入りした写真一覧</h4>
+<table border="1">
+  <thead>
+  <tr>
+    <th>投稿者</th>
+    <th>画像</th>
+    <th>内容</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% if @favorite_list.present? %>
+    <% @favorite_list.each do |feed| %>
+      <tr>
+        <td><%= post.user.name %></td>
+        <td><%= image_tag post.image.url %></td>
+        <td><%= post.content %></td>
+      </tr>
+    <% end %>
+  <% end %>
+  </tbody>
+</table>
