@@ -11,15 +11,18 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
      <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body>
+    <img src="/assets/Iclone.jpg">
+    <br>
     <% flash.each do |key, value| %>
     <%= content_tag(:div, value, class: "#{key}") %>
     <% end %>
     <% if logged_in? %>
-    <%= button_to "ログアウト", session_path(current_user.id), method: :delete %>
     <br>
-    <%= link_to "プロフィール", user_path(current_user.id) %>
+    <table>
+    <td><%= link_to "プロフィール", user_path(current_user.id) %></td>
+    </table>
+    <%= button_to "ログアウト", session_path(current_user.id), method: :delete %>
     <% else %>
       <%= link_to "サインアップ", new_user_path %>
       <%= link_to "ログイン", new_session_path %>

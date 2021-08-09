@@ -1,7 +1,9 @@
 body {
   background-color: #fff;
-  color: #333;
-  margin: 33px;
+  color: rgb(247, 241, 241);
+  text-align:center;
+  margin: 250px;
+  background-image: image-url('ig.jpg')
  }
 
 body, p, ol, ul, td {
@@ -16,10 +18,10 @@ pre {
   font-size: 11px; }
 
 a {
-  color: #000; }
+  color: rgb(255, 254, 254); }
 
 a:visited {
-  color: #666; }
+  color: rgb(255, 252, 252); }
 
 a:hover {
   color: #fff;

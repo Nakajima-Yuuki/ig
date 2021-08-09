@@ -14,3 +14,10 @@
  *= require_self
  */
 
+img{
+    width: auto;
+    height: 200px;
+    margin-top: auto;
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+}
