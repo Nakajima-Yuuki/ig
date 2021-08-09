@@ -5,7 +5,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 gem 'carrierwave'
 gem 'mini_magick'
 
-
+gem 'rexml', '~> 3.2', '>= 3.2.5'
 gem 'rails', '~> 6.1.4'
 gem 'pg', '~> 1.1'
 gem 'puma', '~> 5.0'
@@ -26,6 +26,7 @@ gem 'web-console', '>= 4.1.0'
 gem 'rack-mini-profiler', '~> 2.0'
 gem 'listen', '~> 3.3'
 gem 'spring'
+gem 'letter_opener_web'
 end
 
 group :test do

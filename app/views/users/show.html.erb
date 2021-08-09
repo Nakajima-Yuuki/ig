@@ -1,3 +1,4 @@
+
 <h1><%= @user.name %>のページ</h1>
 <p>メールアドレス: <%= @user.email %></p>
 <p>
@@ -6,13 +7,12 @@
 </p>
 
 <br>
+<table border="5">
+<td><%= link_to '新規投稿', new_post_path %>
+<td><%= link_to '投稿一覧', posts_path %>
 <td><%= link_to 'プロフィール編集', edit_user_path(@user.id) %>
-
-
-<br><br><br>
-<%= link_to '新規投稿', new_post_path %>
-<%= link_to '投稿一覧', posts_path %>
-
+<td><%= link_to 'お問い合わせ', new_contact_path %>
+</table>
 <h4>お気に入りした写真一覧</h4>
 <table border="5">
   <thead>
