@@ -22,7 +22,7 @@ class PostsController < ApplicationController
 
   def confirm
     @post = current_user.posts.build(post_params)
-    render :new if @post.invalid?@post = Post.new(post_params)
+    render :new if @post.invalid?
   end
 
 
@@ -72,20 +72,20 @@ class PostsController < ApplicationController
 
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_post
-      @post = Post.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_post
+    @post = Post.find(params[:id])
+  end
 
     # Only allow a list of trusted parameters through.
-    def post_params
-      params.require(:post).permit(:title, :content, :image, :image_cache)
+  def post_params
+    params.require(:post).permit(:title, :content, :image, :image_cache)
+  end
+  def ensure_correct_user
+    @post = Post.find_by(id: params[:id])
+  if @post.user_id != @current_user.id
+    flash[:notice] = "権限がありません"
+    redirect_to("/posts")
     end
-    def ensure_correct_user
-      @post = Post.find_by(id: params[:id])
-      if @post.user_id != @current_user.id
-        flash[:notice] = "権限がありません"
-        redirect_to("/posts")
-    end
-   end
+  end
 end
